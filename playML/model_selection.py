@@ -1,9 +1,11 @@
 import numpy as np
 
+
 def train_test_split(X, y, seed=None, test_ratio=0.2):
     if seed:
         np.random.seed(seed)
-    shuffled_index = np.random.permutation(data_count)
+
+    shuffled_indexes = np.random.permutation(data_count)
 
     test_size = int(len(X) * test_ratio)
     test_indexes = shuffled_indexes[:test_size]

@@ -2,15 +2,16 @@ import numpy as np
 from math import sqrt
 from collections import Counter
 
+
 class KNNClassifier(object):
-    """docstring for KNNClassifier"""
+
     def __init__(self, k):
         super(KNNClassifier, self).__init__()
         self.k = k
         self._X_train = None
         self._y_train = None
 
-    def  __repr__(self):
+    def __repr__(self):
         return 'KNNClassifier(k=%s)' % (self.k,)
 
     def fit(self, X_train, y_train):
@@ -25,9 +26,9 @@ class KNNClassifier(object):
 
     def _predict(self, x_predict):
         distance = [sqrt(np.sum((x_predict - x_train) ** 2)) for x_train in self._X_train]
-        nearst_index = np.argsort(distance)[:self.k]
-        nearst = [self._y_train[index] for index in nearst_index]
-        votes = Counter(nearst)
+        nearest_index = np.argsort(distance)[:self.k]
+        nearest = [self._y_train[index] for index in nearest_index]
+        votes = Counter(nearest)
         return votes.most_common(1)[0][0]
 
 
