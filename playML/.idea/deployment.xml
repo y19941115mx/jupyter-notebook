@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData">
+    <serverData>
+      <paths name="hui_api">
+        <serverdata>
+          <mappings>
+            <mapping local="E:/hz_api" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="E:/hz_api" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
