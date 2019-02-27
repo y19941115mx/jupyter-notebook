@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.prepsportswear.com/IntegrationServices" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.prepsportswear.com/IntegrationServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.prepsportswear.com/IntegrationServices">
+      <s:element name="GetProductList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AffiliateLogin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AffiliatePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TeamSiteID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Year" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PlayerNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="PlayerName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageScale" type="s:float" />
+            <s:element minOccurs="1" maxOccurs="1" name="MaxProductCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductListResult" type="tns:GetProductListResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetProductListResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RetailPromotion" type="tns:Promotion" />
+          <s:element minOccurs="0" maxOccurs="1" name="BulkPromotion" type="tns:Promotion" />
+          <s:element minOccurs="0" maxOccurs="1" name="Products" type="tns:ArrayOfShortProductInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProductsFound" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasMoreResults" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CallResult" type="tns:CallResult" />
+          <s:element minOccurs="0" maxOccurs="1" name="Partnership" type="tns:PartnershipInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="Store" type="tns:StoreInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Promotion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="HTML" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageURL728x90" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageURL300x250" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageURL468x60" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TargetLink" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfShortProductInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ShortProductInfo" nillable="true" type="tns:ShortProductInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ShortProductInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ProductID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bullet1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bullet2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bullet3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CategoryURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageURL" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ListPrice" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SalePrice" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="SKU" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PromotionalMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductAffiliateLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BackImageURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CallResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PartnershipInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:PartnershipStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="PartnerSystemName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="PartnershipStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="Active" />
+          <s:enumeration value="Disabled" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="StoreInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Matched" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="TeamSiteID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PSID" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetProductListByPSID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AffiliateLogin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AffiliatePassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SchoolID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Year" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PlayerNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="PlayerName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageScale" type="s:float" />
+            <s:element minOccurs="1" maxOccurs="1" name="MaxProductCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductListByPSIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductListByPSIDResult" type="tns:GetProductListResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductListByTeamName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AffiliateLogin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AffiliatePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TeamNameKeywords" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Year" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PlayerNumber" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="PlayerName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageScale" type="s:float" />
+            <s:element minOccurs="1" maxOccurs="1" name="MaxProductCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductListByTeamNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductListByTeamNameResult" type="tns:GetProductListByTeamNameResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetProductListByTeamNameResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RetailPromotion" type="tns:Promotion" />
+          <s:element minOccurs="0" maxOccurs="1" name="BulkPromotion" type="tns:Promotion" />
+          <s:element minOccurs="0" maxOccurs="1" name="Products" type="tns:ArrayOfShortProductInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProductsFound" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasMoreResults" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CallResult" type="tns:CallResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetProductListResponseElement" type="tns:GetProductListResponse" />
+      <s:element name="GetProductListByTeamNameElement" type="tns:GetProductListByTeamNameResponse" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetProductListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductList" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListByPSIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductListByPSID" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListByPSIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductListByPSIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListByTeamNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductListByTeamName" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListByTeamNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductListByTeamNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListHttpGetIn">
+    <wsdl:part name="AffiliateLogin" type="s:string" />
+    <wsdl:part name="AffiliatePassword" type="s:string" />
+    <wsdl:part name="TeamSiteID" type="s:string" />
+    <wsdl:part name="Category" type="s:string" />
+    <wsdl:part name="Activity" type="s:string" />
+    <wsdl:part name="Year" type="s:string" />
+    <wsdl:part name="PlayerNumber" type="s:string" />
+    <wsdl:part name="PlayerName" type="s:string" />
+    <wsdl:part name="ImageScale" type="s:string" />
+    <wsdl:part name="MaxProductCount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListHttpGetOut">
+    <wsdl:part name="Body" element="tns:GetProductListResponseElement" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListByPSIDHttpGetIn">
+    <wsdl:part name="AffiliateLogin" type="s:string" />
+    <wsdl:part name="AffiliatePassword" type="s:string" />
+    <wsdl:part name="SchoolID" type="s:string" />
+    <wsdl:part name="Category" type="s:string" />
+    <wsdl:part name="Activity" type="s:string" />
+    <wsdl:part name="Year" type="s:string" />
+    <wsdl:part name="PlayerNumber" type="s:string" />
+    <wsdl:part name="PlayerName" type="s:string" />
+    <wsdl:part name="ImageScale" type="s:string" />
+    <wsdl:part name="MaxProductCount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListByPSIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:GetProductListResponseElement" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListByTeamNameHttpGetIn">
+    <wsdl:part name="AffiliateLogin" type="s:string" />
+    <wsdl:part name="AffiliatePassword" type="s:string" />
+    <wsdl:part name="TeamNameKeywords" type="s:string" />
+    <wsdl:part name="Category" type="s:string" />
+    <wsdl:part name="Activity" type="s:string" />
+    <wsdl:part name="Year" type="s:string" />
+    <wsdl:part name="PlayerNumber" type="s:string" />
+    <wsdl:part name="PlayerName" type="s:string" />
+    <wsdl:part name="ImageScale" type="s:string" />
+    <wsdl:part name="MaxProductCount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListByTeamNameHttpGetOut">
+    <wsdl:part name="Body" element="tns:GetProductListByTeamNameElement" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListHttpPostIn">
+    <wsdl:part name="AffiliateLogin" type="s:string" />
+    <wsdl:part name="AffiliatePassword" type="s:string" />
+    <wsdl:part name="TeamSiteID" type="s:string" />
+    <wsdl:part name="Category" type="s:string" />
+    <wsdl:part name="Activity" type="s:string" />
+    <wsdl:part name="Year" type="s:string" />
+    <wsdl:part name="PlayerNumber" type="s:string" />
+    <wsdl:part name="PlayerName" type="s:string" />
+    <wsdl:part name="ImageScale" type="s:string" />
+    <wsdl:part name="MaxProductCount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListHttpPostOut">
+    <wsdl:part name="Body" element="tns:GetProductListResponseElement" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListByPSIDHttpPostIn">
+    <wsdl:part name="AffiliateLogin" type="s:string" />
+    <wsdl:part name="AffiliatePassword" type="s:string" />
+    <wsdl:part name="SchoolID" type="s:string" />
+    <wsdl:part name="Category" type="s:string" />
+    <wsdl:part name="Activity" type="s:string" />
+    <wsdl:part name="Year" type="s:string" />
+    <wsdl:part name="PlayerNumber" type="s:string" />
+    <wsdl:part name="PlayerName" type="s:string" />
+    <wsdl:part name="ImageScale" type="s:string" />
+    <wsdl:part name="MaxProductCount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListByPSIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:GetProductListResponseElement" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListByTeamNameHttpPostIn">
+    <wsdl:part name="AffiliateLogin" type="s:string" />
+    <wsdl:part name="AffiliatePassword" type="s:string" />
+    <wsdl:part name="TeamNameKeywords" type="s:string" />
+    <wsdl:part name="Category" type="s:string" />
+    <wsdl:part name="Activity" type="s:string" />
+    <wsdl:part name="Year" type="s:string" />
+    <wsdl:part name="PlayerNumber" type="s:string" />
+    <wsdl:part name="PlayerName" type="s:string" />
+    <wsdl:part name="ImageScale" type="s:string" />
+    <wsdl:part name="MaxProductCount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListByTeamNameHttpPostOut">
+    <wsdl:part name="Body" element="tns:GetProductListByTeamNameElement" />
+  </wsdl:message>
+  <wsdl:portType name="ProductCatalogSoap">
+    <wsdl:operation name="GetProductList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns list of products that can be purchased at Prepsportswear.com for a school or team using the TeamSiteID provided by partner</wsdl:documentation>
+      <wsdl:input message="tns:GetProductListSoapIn" />
+      <wsdl:output message="tns:GetProductListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListByPSID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns list of products that can be purchased at Prepsportswear.com for a school or team using the prepsportswear.com SchoolID</wsdl:documentation>
+      <wsdl:input message="tns:GetProductListByPSIDSoapIn" />
+      <wsdl:output message="tns:GetProductListByPSIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListByTeamName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns list of products that can be purchased at Prepsportswear.com for a school or team using a search string</wsdl:documentation>
+      <wsdl:input message="tns:GetProductListByTeamNameSoapIn" />
+      <wsdl:output message="tns:GetProductListByTeamNameSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ProductCatalogHttpGet">
+    <wsdl:operation name="GetProductList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns list of products that can be purchased at Prepsportswear.com for a school or team using the TeamSiteID provided by partner</wsdl:documentation>
+      <wsdl:input message="tns:GetProductListHttpGetIn" />
+      <wsdl:output message="tns:GetProductListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListByPSID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns list of products that can be purchased at Prepsportswear.com for a school or team using the prepsportswear.com SchoolID</wsdl:documentation>
+      <wsdl:input message="tns:GetProductListByPSIDHttpGetIn" />
+      <wsdl:output message="tns:GetProductListByPSIDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListByTeamName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns list of products that can be purchased at Prepsportswear.com for a school or team using a search string</wsdl:documentation>
+      <wsdl:input message="tns:GetProductListByTeamNameHttpGetIn" />
+      <wsdl:output message="tns:GetProductListByTeamNameHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ProductCatalogHttpPost">
+    <wsdl:operation name="GetProductList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns list of products that can be purchased at Prepsportswear.com for a school or team using the TeamSiteID provided by partner</wsdl:documentation>
+      <wsdl:input message="tns:GetProductListHttpPostIn" />
+      <wsdl:output message="tns:GetProductListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListByPSID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns list of products that can be purchased at Prepsportswear.com for a school or team using the prepsportswear.com SchoolID</wsdl:documentation>
+      <wsdl:input message="tns:GetProductListByPSIDHttpPostIn" />
+      <wsdl:output message="tns:GetProductListByPSIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListByTeamName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns list of products that can be purchased at Prepsportswear.com for a school or team using a search string</wsdl:documentation>
+      <wsdl:input message="tns:GetProductListByTeamNameHttpPostIn" />
+      <wsdl:output message="tns:GetProductListByTeamNameHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProductCatalogSoap" type="tns:ProductCatalogSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetProductList">
+      <soap:operation soapAction="http://www.prepsportswear.com/IntegrationServices/GetProductList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListByPSID">
+      <soap:operation soapAction="http://www.prepsportswear.com/IntegrationServices/GetProductListByPSID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListByTeamName">
+      <soap:operation soapAction="http://www.prepsportswear.com/IntegrationServices/GetProductListByTeamName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProductCatalogSoap12" type="tns:ProductCatalogSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetProductList">
+      <soap12:operation soapAction="http://www.prepsportswear.com/IntegrationServices/GetProductList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListByPSID">
+      <soap12:operation soapAction="http://www.prepsportswear.com/IntegrationServices/GetProductListByPSID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListByTeamName">
+      <soap12:operation soapAction="http://www.prepsportswear.com/IntegrationServices/GetProductListByTeamName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProductCatalogHttpGet" type="tns:ProductCatalogHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetProductList">
+      <http:operation location="/GetProductList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListByPSID">
+      <http:operation location="/GetProductListByPSID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListByTeamName">
+      <http:operation location="/GetProductListByTeamName" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProductCatalogHttpPost" type="tns:ProductCatalogHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetProductList">
+      <http:operation location="/GetProductList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListByPSID">
+      <http:operation location="/GetProductListByPSID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListByTeamName">
+      <http:operation location="/GetProductListByTeamName" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProductCatalog">
+    <wsdl:port name="ProductCatalogSoap" binding="tns:ProductCatalogSoap">
+      <soap:address location="http://www.prepsportswear.com/IntegrationServices/productcatalog.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ProductCatalogSoap12" binding="tns:ProductCatalogSoap12">
+      <soap12:address location="http://www.prepsportswear.com/IntegrationServices/productcatalog.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ProductCatalogHttpGet" binding="tns:ProductCatalogHttpGet">
+      <http:address location="http://www.prepsportswear.com/IntegrationServices/productcatalog.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ProductCatalogHttpPost" binding="tns:ProductCatalogHttpPost">
+      <http:address location="http://www.prepsportswear.com/IntegrationServices/productcatalog.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
